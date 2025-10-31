@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentions Légales - DealVault</title>
+    <title>Mentions Légales - Mediastratix</title>
     <meta name="robots" content="noindex, nofollow">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,7 +114,7 @@
             <nav class="navbar">
                 <a href="index.html" class="logo">
                     <i data-lucide="briefcase" class="logo-icon"></i>
-                    DealVault
+                    Mediastratix
                 </a>
                 <div class="nav-actions">
                     <a href="index.html" class="cta-button nav-cta">Retour à l'accueil</a>
@@ -151,17 +151,17 @@
             
             <h3>1.1 Éditeur du site</h3>
             <p>
-                <strong>Raison sociale :</strong> DealVault SAS (en cours de création)<br>
+                <strong>Raison sociale :</strong> Mediastratix SAS (en cours de création)<br>
                 <strong>Siège social :</strong> [À compléter avec ton adresse]<br>
                 <strong>SIRET :</strong> [À compléter]<br>
                 <strong>Capital social :</strong> [À compléter]<br>
-                <strong>Email :</strong> contact@dealvault.com<br>
+                <strong>Email :</strong> contact@mediastratix.com<br>
                 <strong>Directeur de la publication :</strong> [Ton nom]
             </p>
             
             <h3>1.2 Hébergement</h3>
             <p>
-                Le site DealVault.com est hébergé par :<br>
+                Le site mediastratix.com est hébergé par :<br>
                 <strong>Vercel Inc.</strong><br>
                 340 S Lemon Ave #4133<br>
                 Walnut, CA 91789, USA<br>
@@ -174,7 +174,7 @@
             
             <h3>1.3 Propriété intellectuelle</h3>
             <p>
-                L'ensemble du contenu de ce site (textes, images, vidéos, logos, icônes, etc.) est la propriété exclusive de DealVault, sauf mention contraire. Toute reproduction, même partielle, est strictement interdite sans autorisation préalable écrite.
+                L'ensemble du contenu de ce site (textes, images, vidéos, logos, icônes, etc.) est la propriété exclusive de Mediastratix, sauf mention contraire. Toute reproduction, même partielle, est strictement interdite sans autorisation préalable écrite.
             </p>
         </section>
 
@@ -184,12 +184,12 @@
             
             <h3>2.1 Objet</h3>
             <p>
-                Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation de la plateforme DealVault, un logiciel en tant que service (SaaS) destiné à la gestion de la relation client pour les freelances et petites entreprises.
+                Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation de la plateforme Mediastratix, un logiciel en tant que service (SaaS) destiné à la gestion de la relation client pour les freelances et petites entreprises.
             </p>
             
             <h3>2.2 Acceptation des CGU</h3>
             <p>
-                En créant un compte sur DealVault, vous acceptez sans réserve les présentes CGU. Si vous n'acceptez pas ces conditions, vous ne devez pas utiliser le service.
+                En créant un compte sur Mediastratix, vous acceptez sans réserve les présentes CGU. Si vous n'acceptez pas ces conditions, vous ne devez pas utiliser le service.
             </p>
             
             <h3>2.3 Inscription et compte utilisateur</h3>
@@ -198,12 +198,12 @@
                 <li>Vous devez fournir des informations exactes et à jour</li>
                 <li>Vous êtes responsable de la confidentialité de vos identifiants</li>
                 <li>Un compte par personne ou entreprise est autorisé</li>
-                <li>DealVault se réserve le droit de suspendre ou supprimer un compte en cas de violation des CGU</li>
+                <li>Mediastratix se réserve le droit de suspendre ou supprimer un compte en cas de violation des CGU</li>
             </ul>
             
             <h3>2.4 Services proposés</h3>
             <p>
-                DealVault propose les fonctionnalités suivantes :
+                Mediastratix propose les fonctionnalités suivantes :
             </p>
             <ul>
                 <li>Gestion de contacts clients et prospects</li>
@@ -230,7 +230,7 @@
                 <li>Vous pouvez résilier à tout moment depuis votre compte</li>
                 <li>La résiliation prend effet à la fin de la période en cours</li>
                 <li>Vos données restent accessibles pendant 90 jours après résiliation</li>
-                <li>DealVault peut résilier votre compte en cas de non-paiement ou violation des CGU</li>
+                <li>Mediastratix peut résilier votre compte en cas de non-paiement ou violation des CGU</li>
             </ul>
             
             <h3>2.7 Obligations de l'utilisateur</h3>
@@ -245,7 +245,7 @@
             
             <h3>2.8 Limitation de responsabilité</h3>
             <p>
-                DealVault s'efforce de maintenir le service accessible 24h/24 et 7j/7, mais ne garantit pas une disponibilité ininterrompue. DealVault ne pourra être tenue responsable en cas de :
+                Mediastratix s'efforce de maintenir le service accessible 24h/24 et 7j/7, mais ne garantit pas une disponibilité ininterrompue. Mediastratix ne pourra être tenue responsable en cas de :
             </p>
             <ul>
                 <li>Interruption temporaire du service pour maintenance</li>
@@ -256,7 +256,7 @@
             
             <h3>2.9 Modifications des CGU</h3>
             <p>
-                DealVault se réserve le droit de modifier les présentes CGU à tout moment. Les utilisateurs seront informés par email 30 jours avant l'entrée en vigueur des modifications. L'utilisation continue du service après cette période vaut acceptation des nouvelles CGU.
+                Mediastratix se réserve le droit de modifier les présentes CGU à tout moment. Les utilisateurs seront informés par email 30 jours avant l'entrée en vigueur des modifications. L'utilisation continue du service après cette période vaut acceptation des nouvelles CGU.
             </p>
             
             <h3>2.10 Loi applicable et juridiction</h3>
@@ -271,7 +271,7 @@
             
             <h3>3.1 Responsable de traitement</h3>
             <p>
-                DealVault SAS, [adresse], est le responsable du traitement de vos données personnelles au sens du Règlement Général sur la Protection des Données (RGPD).
+              Mediastratix SAS, [adresse], est le responsable du traitement de vos données personnelles au sens du Règlement Général sur la Protection des Données (RGPD).
             </p>
             
             <h3>3.2 Données collectées</h3>
@@ -286,7 +286,7 @@
             <h3>3.3 Finalités du traitement</h3>
             <p>Vos données sont utilisées pour :</p>
             <ul>
-                <li>Fournir et gérer le service DealVault</li>
+                <li>Fournir et gérer le service Mediastratix</li>
                 <li>Traiter les paiements</li>
                 <li>Vous contacter pour le support client</li>
                 <li>Améliorer nos services (statistiques anonymisées)</li>
@@ -342,7 +342,7 @@
                 <li><strong>Droit de limitation :</strong> demander la limitation du traitement</li>
             </ul>
             <p>
-                Pour exercer vos droits, contactez-nous à : <strong>privacy@dealvault.com</strong><br>
+                Pour exercer vos droits, contactez-nous à : <strong>privacy@mediastratix.com</strong><br>
                 Délai de réponse : 1 mois maximum.
             </p>
             <p>
@@ -411,9 +411,9 @@
             <p>Pour toute question concernant ces mentions légales, les CGU ou la protection de vos données :</p>
             
             <ul>
-                <li><strong>Email général :</strong> contact@dealvault.com</li>
-                <li><strong>Email données personnelles :</strong> privacy@dealvault.com</li>
-                <li><strong>Support client :</strong> support@dealvault.com</li>
+                <li><strong>Email général :</strong> contact@mediastratix.com</li>
+                <li><strong>Email données personnelles :</strong> privacy@mediastratix.com</li>
+                <li><strong>Support client :</strong> support@mediastratix.com</li>
                 <li><strong>Téléphone :</strong> [À compléter]</li>
                 <li><strong>Adresse postale :</strong> [À compléter]</li>
             </ul>
@@ -421,14 +421,14 @@
             <p>
                 <strong>Délégué à la Protection des Données (DPO) :</strong><br>
                 [Nom à compléter si nécessaire]<br>
-                Email : dpo@dealvault.com
+                Email : dpo@mediastratix.com
             </p>
         </section>
 
         <hr style="margin: 3rem 0; border: 1px solid var(--color-border);">
         
         <p style="text-align: center; color: var(--color-text-secondary); font-size: 0.9rem;">
-            Document mis à jour le 20 janvier 2025. DealVault se réserve le droit de modifier ces mentions légales à tout moment.
+            Document mis à jour le 20 janvier 2025. Mediastratix se réserve le droit de modifier ces mentions légales à tout moment.
         </p>
         
         <p style="text-align: center; margin-top: 2rem;">
@@ -439,7 +439,7 @@
     <!-- FOOTER -->
     <footer class="footer container">
         <div class="footer-bottom">
-            <p>© 2025 DealVault. Tous droits réservés.</p>
+            <p>© 2025 Mediastratix. Tous droits réservés.</p>
         </div>
     </footer>
 

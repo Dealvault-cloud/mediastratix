@@ -1,5 +1,5 @@
 // ============================================
-// DEALVAULT - SCRIPT PRINCIPAL
+// MEDIASTRATIX - SCRIPT PRINCIPAL
 // Version Finale - Optimisée
 // ============================================
 
@@ -43,7 +43,7 @@ const quotes = [
 document.addEventListener("DOMContentLoaded", () => {
     
     try {
-        console.log("🚀 DealVault - Initialisation...");
+        console.log("🚀 Mediastratix - Initialisation...");
         
         // 1. Icônes Lucide
         initLucideIcons();
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // 11. Boutons "Voir plus" pricing
         initShowMoreButtons();
 
-        console.log("✅ DealVault chargé !");
+        console.log("✅ Mediastratix chargé !");
         
     } catch (error) {
         console.error("❌ Erreur:", error);
