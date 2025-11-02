@@ -167,25 +167,35 @@ function initBetaBanner() {
         return;
     }
     
-    // ✅ TOUJOURS AFFICHER (ignore localStorage pour test)
+    // Toujours afficher au chargement
     document.body.classList.add('has-beta-banner');
     betaBanner.classList.remove('hidden');
+    betaBanner.style.display = 'flex';
+    betaBanner.style.visibility = 'visible';
+    betaBanner.style.opacity = '1';
     
     // Fermer la barre au clic
-    closeBtn.addEventListener('click', () => {
+    closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        
+        // Forcer la fermeture
+        betaBanner.style.display = 'none';
+        betaBanner.style.visibility = 'hidden';
+        betaBanner.style.opacity = '0';
         betaBanner.classList.add('hidden');
         document.body.classList.remove('has-beta-banner');
         
-        // ❌ COMMENTÉ POUR TEST - Ne sauvegarde plus dans localStorage
-        // localStorage.setItem('beta-banner-closed', 'true');
-        
         // Track analytics
-        trackEvent('Beta Banner', 'Close', 'User dismissed');
+        if (typeof trackEvent === 'function') {
+            trackEvent('Beta Banner', 'Close', 'User dismissed');
+        }
         
-        console.log("✅ Barre beta fermée (mais réapparaîtra au refresh)");
+        console.log("✅ Barre beta fermée");
     });
     
-    console.log("✅ Barre beta initialisée et affichée");
+    console.log("✅ Barre beta initialisée");
 }
 
 // ============================================
@@ -243,8 +253,14 @@ function initHeaderScrollBehavior() {
     let lastScroll = window.scrollY;
     const header = document.querySelector('header');
     const romanPillar = document.querySelector('.roman-pillar');
+    const betaBanner = document.getElementById('beta-banner');
     
     if (!header) return;
+    
+    // Hauteur du header (70px desktop, 60px mobile)
+    const getHeaderHeight = () => {
+        return window.innerWidth <= 850 ? 60 : 70;
+    };
     
     let ticking = false;
     
@@ -252,25 +268,37 @@ function initHeaderScrollBehavior() {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 const currentScroll = window.scrollY;
+                const headerHeight = getHeaderHeight();
                 
                 // Hide/show header
                 if (currentScroll > lastScroll && currentScroll > 100) {
                     header.style.transform = 'translateY(-100%)';
+                    // Barre bêta monte en haut quand le header disparaît
+                    if (betaBanner && !betaBanner.classList.contains('hidden')) {
+                        betaBanner.style.top = '0px';
+                    }
                     if (romanPillar) {
                         romanPillar.classList.remove('header-visible');
                         romanPillar.classList.add('header-hidden');
                     }
                 } else if (currentScroll < lastScroll) {
                     header.style.transform = 'translateY(0)';
+                    // Barre bêta redescend collée au header quand le header revient
+                    if (betaBanner && !betaBanner.classList.contains('hidden')) {
+                        betaBanner.style.top = `${headerHeight}px`;
+                    }
                     if (romanPillar) {
                         romanPillar.classList.remove('header-hidden');
                         romanPillar.classList.add('header-visible');
                     }
                 }
                 
-                // Reset pillar au top
+                // Reset pillar et barre bêta au top
                 if (currentScroll <= 50 && romanPillar) {
                     romanPillar.classList.remove('header-hidden', 'header-visible');
+                    if (betaBanner && !betaBanner.classList.contains('hidden')) {
+                        betaBanner.style.top = `${headerHeight}px`;
+                    }
                 }
                 
                 lastScroll = currentScroll;

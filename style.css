@@ -26,6 +26,8 @@
 
 html { 
     scroll-behavior: smooth; 
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -36,7 +38,12 @@ body {
     -webkit-font-smoothing: antialiased;
     position: relative;
     overflow-x: hidden;
+    width: 100%;
     padding-top: 70px;
+}
+
+body.has-beta-banner {
+    padding-top: 106px; /* 70px header + 36px beta banner */
 }
 
 h1, h2, h3, h4 {
@@ -203,6 +210,7 @@ header {
     left: 0;
     right: 0;
     width: 100%;
+    max-width: 100%;
     background-color: var(--color-background);
     z-index: 100;
     border-bottom: 1px solid var(--color-border);
@@ -286,22 +294,25 @@ header {
 
 /* ======== BARRE ANNONCE BETA ======== */
 .beta-banner {
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
+    position: fixed !important;
+    top: 70px;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
     background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
     color: #FFFFFF;
     padding: 8px 50px 8px 12px;
-    display: flex;
+    display: flex !important;
     align-items: center;
     gap: 12px;
-    z-index: 99;
+    z-index: 98 !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     animation: slideDown 0.4s ease-out;
     overflow: hidden;
     min-height: 36px;
+    transform: none !important;
+    transition: top 0.3s ease;
 }
 
 @keyframes slideDown {
@@ -336,7 +347,7 @@ header {
 
 /* Version mobile : texte défilant (masquée sur desktop) */
 .beta-banner-content-wrapper {
-    display: none;
+    display: none !important;
     gap: 40px;
     white-space: nowrap;
     animation: scrollText 30s linear infinite;
@@ -374,8 +385,9 @@ header {
     justify-content: center;
     transition: opacity 0.3s ease;
     flex-shrink: 0;
-    z-index: 10;
+    z-index: 100;
     position: relative;
+    pointer-events: auto;
 }
 
 .beta-banner-close:hover {
@@ -389,7 +401,9 @@ header {
 
 /* Masquer la barre */
 .beta-banner.hidden {
-    display: none;
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
 }
 
 /* Mode clair - MÊME STYLE */
@@ -1561,12 +1575,68 @@ body.light-mode .hero::before {
 }
 
 @media (max-width: 850px) {
+    /* Empêcher le scroll horizontal */
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+    
     body {
         padding-top: 60px;
     }
     
     body.has-beta-banner {
         padding-top: 92px; /* 60px header + 32px beta banner */
+    }
+    
+    /* Header mobile optimisé */
+    header {
+        padding: 8px 0;
+        height: 60px;
+    }
+    
+    .navbar {
+        padding: 0 1rem;
+    }
+    
+    .logo {
+        font-size: 1.1rem;
+    }
+    
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* Barre bêta collée au header - reste toujours en haut */
+    .beta-banner {
+        top: 60px !important;
+        padding: 8px 44px 8px 10px;
+        min-height: 32px;
+        position: fixed !important;
+        z-index: 98 !important;
+    }
+    
+    /* Sur mobile : masquer version desktop, afficher version défilante */
+    .beta-banner-content-desktop {
+        display: none;
+    }
+    
+    .beta-banner-content-wrapper {
+        display: flex;
+    }
+    
+    .beta-banner-text {
+        font-size: 0.75rem;
+    }
+    
+    .beta-banner-close {
+        padding: 2px 6px;
+    }
+    
+    .beta-banner-close i {
+        width: 16px;
+        height: 16px;
     }
     
     .roman-pillar { 
@@ -1634,11 +1704,22 @@ body.light-mode .hero::before {
         align-items: center;
         width: 100%;
         padding: 0 1rem;
+        gap: 14px;
     }
     
+    /* Boutons CTA bleus plus gros sur mobile */
     .hero-cta-group .cta-button {
         width: 100%;
-        max-width: 300px;
+        max-width: 320px;
+        padding: 14px 24px;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    
+    .hero-cta-group .hero-cta.primary,
+    .hero-cta-group .hero-cta:not(.secondary) {
+        font-size: 1.05rem;
+        padding: 16px 28px;
     }
     
     .hero-stats { 
@@ -1680,6 +1761,7 @@ body.light-mode .hero::before {
     
     .container {
         padding: 0 1rem;
+        max-width: 100%;
     }
     
     .section-subtitle {
@@ -1697,11 +1779,56 @@ body.light-mode .hero::before {
     .testimonials-section {
         padding: 40px 0;
     }
+    
+    /* Wave animation - s'assurer qu'elle ne cause pas de scroll */
+    .wave-animation {
+        max-width: 100%;
+        overflow: hidden;
+    }
 }
 
 @media (max-width: 480px) {
+    /* Empêcher le scroll horizontal sur très petits écrans */
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+    
     body.has-beta-banner {
         padding-top: 90px; /* 60px header + 30px beta banner */
+    }
+    
+    /* Header encore plus compact */
+    header {
+        height: 56px;
+        padding: 6px 0;
+    }
+    
+    .logo {
+        font-size: 1rem;
+    }
+    
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    /* Barre bêta collée au header sur très petit écran - reste toujours en haut */
+    .beta-banner {
+        top: 56px !important;
+        padding: 6px 40px 6px 8px;
+        min-height: 30px;
+        position: fixed !important;
+        z-index: 98 !important;
+    }
+    
+    .beta-banner-text {
+        font-size: 0.7rem;
+    }
+    
+    .beta-banner-close i {
+        width: 14px;
+        height: 14px;
     }
     
     .hero-title { 
@@ -1713,6 +1840,19 @@ body.light-mode .hero::before {
     .hero-subtitle {
         font-size: 0.95rem;
         padding: 0 0.5rem;
+    }
+    
+    /* Boutons CTA encore plus gros sur très petit mobile */
+    .hero-cta-group .cta-button {
+        padding: 16px 24px;
+        font-size: 1.05rem;
+        max-width: 100%;
+    }
+    
+    .hero-cta-group .hero-cta.primary,
+    .hero-cta-group .hero-cta:not(.secondary) {
+        font-size: 1.1rem;
+        padding: 18px 32px;
     }
     
     .hero-stats {
@@ -1746,6 +1886,7 @@ body.light-mode .hero::before {
     
     .container {
         padding: 0 0.75rem;
+        max-width: 100%;
     }
     
     h2 {
@@ -1755,5 +1896,11 @@ body.light-mode .hero::before {
     .section-subtitle {
         font-size: 0.9rem;
         padding: 0 0.5rem;
+    }
+    
+    /* Wave animation - empêcher débordement */
+    .wave-animation {
+        max-width: 100vw;
+        overflow: hidden;
     }
 }
