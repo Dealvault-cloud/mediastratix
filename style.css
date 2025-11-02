@@ -1608,35 +1608,68 @@ body.light-mode .hero::before {
         height: 40px;
     }
     
+    /* Cacher le bouton CTA du header sur mobile */
+    .nav-cta {
+        display: none !important;
+    }
+    
+    .nav-actions {
+        gap: 8px;
+    }
+    
     /* Barre bêta collée au header - reste toujours en haut */
     .beta-banner {
         top: 60px !important;
-        padding: 8px 44px 8px 10px;
+        padding: 6px 40px 6px 10px !important;
         min-height: 32px;
         position: fixed !important;
         z-index: 98 !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .beta-banner-scroll-container {
+        flex: 1;
+        overflow: visible !important;
     }
     
     /* Sur mobile : masquer version desktop, afficher version défilante */
     .beta-banner-content-desktop {
-        display: none;
+        display: none !important;
     }
     
     .beta-banner-content-wrapper {
-        display: flex;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     .beta-banner-text {
-        font-size: 0.75rem;
+        font-size: 0.75rem !important;
+        color: #FFFFFF !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        white-space: nowrap;
     }
     
     .beta-banner-close {
-        padding: 2px 6px;
+        padding: 4px 8px !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 101 !important;
+        position: relative !important;
+        flex-shrink: 0;
     }
     
     .beta-banner-close i {
-        width: 16px;
-        height: 16px;
+        width: 18px !important;
+        height: 18px !important;
+        color: #FFFFFF !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: block !important;
     }
     
     .roman-pillar { 
@@ -1816,19 +1849,37 @@ body.light-mode .hero::before {
     /* Barre bêta collée au header sur très petit écran - reste toujours en haut */
     .beta-banner {
         top: 56px !important;
-        padding: 6px 40px 6px 8px;
+        padding: 5px 36px 5px 8px !important;
         min-height: 30px;
         position: fixed !important;
         z-index: 98 !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     .beta-banner-text {
-        font-size: 0.7rem;
+        font-size: 0.7rem !important;
+        color: #FFFFFF !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .beta-banner-close {
+        padding: 3px 6px !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 101 !important;
     }
     
     .beta-banner-close i {
-        width: 14px;
-        height: 14px;
+        width: 16px !important;
+        height: 16px !important;
+        color: #FFFFFF !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: block !important;
     }
     
     .hero-title { 
