@@ -380,24 +380,44 @@ header {
     color: #FFFFFF;
     cursor: pointer;
     padding: 4px 8px;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     transition: opacity 0.3s ease;
     flex-shrink: 0;
     z-index: 100;
-    position: relative;
+    position: relative !important;
     pointer-events: auto;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
 }
 
 .beta-banner-close:hover {
     opacity: 0.7;
 }
 
-.beta-banner-close i {
+.beta-banner-close i,
+.beta-banner-close svg {
     width: 18px;
     height: 18px;
     display: block;
+    color: #FFFFFF !important;
+}
+
+.beta-banner-close .close-x {
+    font-size: 24px;
+    line-height: 1;
+    color: #FFFFFF !important;
+    font-weight: 300;
+    display: block !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* Masquer la barre */
@@ -1634,7 +1654,7 @@ body.light-mode .hero::before {
     
     /* Barre bêta collée au header - reste toujours en haut */
     .beta-banner {
-        top: 60px !important;
+        top: 60px;
         padding: 6px 40px 6px 10px !important;
         min-height: 32px;
         position: fixed !important;
@@ -1642,6 +1662,7 @@ body.light-mode .hero::before {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
+        transition: top 0.3s ease !important;
     }
     
     .beta-banner-scroll-container {
@@ -1678,13 +1699,29 @@ body.light-mode .hero::before {
         flex-shrink: 0;
     }
     
-    .beta-banner-close i {
+    .beta-banner-close i,
+    .beta-banner-close svg {
         width: 18px !important;
         height: 18px !important;
         color: #FFFFFF !important;
         visibility: visible !important;
         opacity: 1 !important;
         display: block !important;
+    }
+    
+    .beta-banner-close .close-x {
+        font-size: 20px !important;
+        line-height: 1 !important;
+        color: #FFFFFF !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: block !important;
+        font-weight: 300 !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        pointer-events: none !important;
     }
     
     .roman-pillar { 
@@ -1824,7 +1861,7 @@ body.light-mode .hero::before {
     
     /* Barre bêta collée au header sur très petit écran - reste toujours en haut */
     .beta-banner {
-        top: 56px !important;
+        top: 56px;
         padding: 5px 36px 5px 8px !important;
         min-height: 30px;
         position: fixed !important;
@@ -1832,6 +1869,7 @@ body.light-mode .hero::before {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
+        transition: top 0.3s ease !important;
     }
     
     .beta-banner-text {
@@ -1849,13 +1887,24 @@ body.light-mode .hero::before {
         z-index: 101 !important;
     }
     
-    .beta-banner-close i {
+    .beta-banner-close i,
+    .beta-banner-close svg {
         width: 16px !important;
         height: 16px !important;
         color: #FFFFFF !important;
         visibility: visible !important;
         opacity: 1 !important;
         display: block !important;
+    }
+    
+    .beta-banner-close .close-x {
+        font-size: 18px !important;
+        line-height: 1 !important;
+        color: #FFFFFF !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: block !important;
+        font-weight: 300 !important;
     }
     
     .hero-title { 

@@ -174,6 +174,22 @@ function initBetaBanner() {
     betaBanner.style.visibility = 'visible';
     betaBanner.style.opacity = '1';
     
+    // FORCER l'affichage de la croix - toujours visible
+    const closeXSpan = closeBtn.querySelector('.close-x');
+    if (closeXSpan) {
+        closeXSpan.style.setProperty('display', 'block', 'important');
+        closeXSpan.style.setProperty('visibility', 'visible', 'important');
+        closeXSpan.style.setProperty('opacity', '1', 'important');
+        closeXSpan.style.setProperty('color', '#FFFFFF', 'important');
+        closeXSpan.style.setProperty('font-size', '24px', 'important');
+    }
+    
+    // S'assurer que le bouton est bien visible
+    closeBtn.style.setProperty('display', 'flex', 'important');
+    closeBtn.style.setProperty('visibility', 'visible', 'important');
+    closeBtn.style.setProperty('opacity', '1', 'important');
+    closeBtn.style.setProperty('z-index', '101', 'important');
+    
     // Fermer la barre au clic
     closeBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -273,9 +289,10 @@ function initHeaderScrollBehavior() {
                 // Hide/show header
                 if (currentScroll > lastScroll && currentScroll > 100) {
                     header.style.transform = 'translateY(-100%)';
-                    // Barre bêta monte en haut quand le header disparaît
+                    // Barre bêta monte en haut quand le header disparaît - FORCER avec !important via style inline
                     if (betaBanner && !betaBanner.classList.contains('hidden')) {
-                        betaBanner.style.top = '0px';
+                        betaBanner.style.setProperty('top', '0px', 'important');
+                        betaBanner.style.setProperty('transition', 'top 0.3s ease', 'important');
                     }
                     if (romanPillar) {
                         romanPillar.classList.remove('header-visible');
@@ -283,9 +300,10 @@ function initHeaderScrollBehavior() {
                     }
                 } else if (currentScroll < lastScroll) {
                     header.style.transform = 'translateY(0)';
-                    // Barre bêta redescend collée au header quand le header revient
+                    // Barre bêta redescend collée au header quand le header revient - FORCER avec !important
                     if (betaBanner && !betaBanner.classList.contains('hidden')) {
-                        betaBanner.style.top = `${headerHeight}px`;
+                        betaBanner.style.setProperty('top', `${headerHeight}px`, 'important');
+                        betaBanner.style.setProperty('transition', 'top 0.3s ease', 'important');
                     }
                     if (romanPillar) {
                         romanPillar.classList.remove('header-hidden');
@@ -297,7 +315,7 @@ function initHeaderScrollBehavior() {
                 if (currentScroll <= 50 && romanPillar) {
                     romanPillar.classList.remove('header-hidden', 'header-visible');
                     if (betaBanner && !betaBanner.classList.contains('hidden')) {
-                        betaBanner.style.top = `${headerHeight}px`;
+                        betaBanner.style.setProperty('top', `${headerHeight}px`, 'important');
                     }
                 }
                 
