@@ -182,7 +182,8 @@ header {
     z-index: 99;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     min-height: var(--beta-height);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Ajout de opacity */
+    transform: translateY(0); /* État initial */
 }
 
 .beta-banner.hidden {

@@ -112,6 +112,9 @@ function initThemeToggle() {
 // ============================================
 // BARRE BETA (FIX RESPONSIVE)
 // ============================================
+// ============================================
+// BARRE BETA (FIX RESPONSIVE)
+// ============================================
 function initBetaBanner() {
     const betaBanner = document.getElementById('beta-banner');
     const closeBtn = document.getElementById('close-beta-banner');
@@ -127,15 +130,22 @@ function initBetaBanner() {
     betaBanner.style.display = 'flex';
     betaBanner.style.visibility = 'visible';
     betaBanner.style.opacity = '1';
+    betaBanner.style.transform = 'translateY(0)'; // Important pour le scroll behavior
     
     // Fermer la barre
     closeBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         
-        betaBanner.style.display = 'none';
-        betaBanner.classList.add('hidden');
-        document.body.classList.remove('has-beta-banner');
+        // Animation de fermeture
+        betaBanner.style.transform = 'translateY(-100%)';
+        betaBanner.style.opacity = '0';
+        
+        setTimeout(() => {
+            betaBanner.style.display = 'none';
+            betaBanner.classList.add('hidden');
+            document.body.classList.remove('has-beta-banner');
+        }, 300);
         
         if (typeof trackEvent === 'function') {
             trackEvent('Beta Banner', 'Close', 'User dismissed');
@@ -198,6 +208,9 @@ function initRomanPillarNavigation() {
 // ============================================
 // HEADER + BARRE BETA SCROLL BEHAVIOR (SYNCHRONISÉ)
 // ============================================
+// ============================================
+// HEADER + BARRE BETA SCROLL BEHAVIOR (SYNCHRONISÉ)
+// ============================================
 function initHeaderScrollBehavior() {
     let lastScroll = window.scrollY;
     const header = document.querySelector('header');
@@ -205,6 +218,17 @@ function initHeaderScrollBehavior() {
     const betaBanner = document.getElementById('beta-banner');
     
     if (!header) return;
+    
+    // Variable pour tracker si la beta banner a été fermée manuellement
+    let betaBannerManuallyClosed = false;
+    
+    // Écouter la fermeture manuelle de la banner
+    const closeBtn = document.getElementById('close-beta-banner');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            betaBannerManuallyClosed = true;
+        });
+    }
     
     let ticking = false;
     
@@ -217,8 +241,12 @@ function initHeaderScrollBehavior() {
                 if (currentScroll > lastScroll && currentScroll > 100) {
                     header.style.transform = 'translateY(-100%)';
                     
-                    if (betaBanner && !betaBanner.classList.contains('hidden')) {
-                        betaBanner.style.transform = 'translateY(-100%)';
+                    // Cacher la beta banner SEULEMENT si elle n'a pas été fermée manuellement
+                    if (betaBanner && !betaBannerManuallyClosed && !betaBanner.classList.contains('hidden')) {
+                        // Calculer la hauteur totale à cacher (header + beta banner)
+                        const headerHeight = header.offsetHeight;
+                        const betaHeight = betaBanner.offsetHeight;
+                        betaBanner.style.transform = `translateY(calc(-100% - ${headerHeight}px))`;
                     }
                     
                     if (romanPillar) {
@@ -230,23 +258,14 @@ function initHeaderScrollBehavior() {
                 else if (currentScroll < lastScroll) {
                     header.style.transform = 'translateY(0)';
                     
-                    if (betaBanner && !betaBanner.classList.contains('hidden')) {
+                    // Réafficher la beta banner SEULEMENT si elle n'a pas été fermée manuellement
+                    if (betaBanner && !betaBannerManuallyClosed && !betaBanner.classList.contains('hidden')) {
                         betaBanner.style.transform = 'translateY(0)';
                     }
                     
                     if (romanPillar) {
-                        romanPillar.classList.remove('header-hidden');
                         romanPillar.classList.add('header-visible');
-                    }
-                }
-                
-                // Reset au top
-                if (currentScroll <= 50) {
-                    if (romanPillar) {
-                        romanPillar.classList.remove('header-hidden', 'header-visible');
-                    }
-                    if (betaBanner && !betaBanner.classList.contains('hidden')) {
-                        betaBanner.style.transform = 'translateY(0)';
+                        romanPillar.classList.remove('header-hidden');
                     }
                 }
                 
@@ -257,7 +276,7 @@ function initHeaderScrollBehavior() {
         }
     });
     
-    console.log("✅ Header + barre beta scroll activés");
+    console.log("✅ Header + Beta banner scroll configurés");
 }
 
 // ============================================
@@ -308,7 +327,7 @@ function initMobileMenu() {
 // SMOOTH SCROLL (OFFSETS CORRECTS)
 // ============================================
 function initSmoothScroll() {
-    const scrollButtons = document.querySelectorAll('.cta-scroll, .pillar-nav-item');
+    const scrollButtons = document.querySelectorAll('.cta-scroll, .pillar-nav-item, .nav-link[href^="#"]');
     
     scrollButtons.forEach(button => {
         button.addEventListener('click', (e) => {
