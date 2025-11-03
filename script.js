@@ -1,9 +1,9 @@
 // ============================================
-// MEDIASTRATIX - SCRIPT PRINCIPAL
-// Version Finale - Optimisée
+// MEDIASTRATIX - SCRIPT FINAL
+// Optimisé - Responsive - Clean
 // ============================================
 
-// Citations pour footer
+// Citations footer
 const quotes = [
     { 
         text: "Your network is your net worth.", 
@@ -29,11 +29,6 @@ const quotes = [
         text: "The best time to plant a tree was 20 years ago. The second best time is now.", 
         author: "Proverbe chinois", 
         fr: "Le meilleur moment pour planter un arbre était il y a 20 ans. Le deuxième meilleur moment est maintenant." 
-    },
-    { 
-        text: "The way to get started is to quit talking and begin doing.", 
-        author: "Walt Disney", 
-        fr: "Pour commencer, arrêtez de parler et commencez à agir." 
     }
 ];
 
@@ -41,49 +36,26 @@ const quotes = [
 // INITIALISATION
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
-    
     try {
         console.log("🚀 Mediastratix - Initialisation...");
         
-        // 1. Icônes Lucide
         initLucideIcons();
-        
-        // 2. Theme toggle
         initThemeToggle();
-
-        // 3. Barre beta
         initBetaBanner();
+        initRomanPillarNavigation();
+        initHeaderScrollBehavior();
+        initMobileMenu();
+        initSmoothScroll();
+        initFAQAccordion();
+        initRandomQuote();
+        initAnalyticsTracking();
         
-        // 🔥 RE-INITIALISE LES ICÔNES
+        // Re-init icons après chargement
         setTimeout(() => {
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
         }, 100);
-
-        // 4. Pilier romain navigation
-        initRomanPillarNavigation();
-        
-        // 5. Header scroll behavior
-        initHeaderScrollBehavior();
-        
-        // 6. Menu mobile
-        initMobileMenu();
-        
-        // 7. Smooth scroll (avec offsets corrects)
-        initSmoothScroll();
-        
-        // 8. FAQ accordéon
-        initFAQAccordion();
-        
-        // 9. Citations aléatoires
-        initRandomQuote();
-        
-        // 10. Analytics (optionnel)
-        initAnalyticsTracking();
-        
-        // 11. Boutons "Voir plus" pricing
-        initShowMoreButtons();
 
         console.log("✅ Mediastratix chargé !");
         
@@ -93,9 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ============================================
-// 1. ICÔNES LUCIDE
+// ICÔNES LUCIDE
 // ============================================
-
 let iconsInitialized = false;
 
 function initLucideIcons() {
@@ -107,14 +78,12 @@ function initLucideIcons() {
 }
 
 // ============================================
-// 2. THEME TOGGLE (DARK/LIGHT MODE)
+// THEME TOGGLE (DARK/LIGHT)
 // ============================================
-
 function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
-    const heroSection = document.querySelector('.hero');
+    if (!themeToggle) return;
     
-    // Charge la préférence sauvegardée
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
@@ -122,33 +91,18 @@ function initThemeToggle() {
         if (typeof lucide !== 'undefined') lucide.createIcons();
     }
     
-    // Toggle au clic
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('light-mode');
         
         const isLight = document.body.classList.contains('light-mode');
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
         
-        // Remplace complètement l'icône
         themeToggle.innerHTML = isLight 
             ? '<i data-lucide="sun" class="theme-icon"></i>'
             : '<i data-lucide="moon" class="theme-icon"></i>';
         
-        // Recrée les icônes
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
-        }
-        
-        // Gestion transition texte hero en mode clair
-        if (isLight && heroSection) {
-            heroSection.classList.remove('hero-transition-dark');
-            setTimeout(() => {
-                if (document.body.classList.contains('light-mode')) {
-                    heroSection.classList.add('hero-transition-dark');
-                }
-            }, 3000);
-        } else if (heroSection) {
-            heroSection.classList.remove('hero-transition-dark');
         }
     });
     
@@ -156,7 +110,7 @@ function initThemeToggle() {
 }
 
 // ============================================
-// 3. BARRE ANNONCE BETA
+// BARRE BETA (FIX RESPONSIVE)
 // ============================================
 function initBetaBanner() {
     const betaBanner = document.getElementById('beta-banner');
@@ -167,43 +121,22 @@ function initBetaBanner() {
         return;
     }
     
-    // Toujours afficher au chargement
+    // Afficher au chargement
     document.body.classList.add('has-beta-banner');
     betaBanner.classList.remove('hidden');
     betaBanner.style.display = 'flex';
     betaBanner.style.visibility = 'visible';
     betaBanner.style.opacity = '1';
     
-    // FORCER l'affichage de la croix - toujours visible
-    const closeXSpan = closeBtn.querySelector('.close-x');
-    if (closeXSpan) {
-        closeXSpan.style.setProperty('display', 'block', 'important');
-        closeXSpan.style.setProperty('visibility', 'visible', 'important');
-        closeXSpan.style.setProperty('opacity', '1', 'important');
-        closeXSpan.style.setProperty('color', '#FFFFFF', 'important');
-        closeXSpan.style.setProperty('font-size', '24px', 'important');
-    }
-    
-    // S'assurer que le bouton est bien visible
-    closeBtn.style.setProperty('display', 'flex', 'important');
-    closeBtn.style.setProperty('visibility', 'visible', 'important');
-    closeBtn.style.setProperty('opacity', '1', 'important');
-    closeBtn.style.setProperty('z-index', '101', 'important');
-    
-    // Fermer la barre au clic
+    // Fermer la barre
     closeBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        e.stopImmediatePropagation();
         
-        // Forcer la fermeture
         betaBanner.style.display = 'none';
-        betaBanner.style.visibility = 'hidden';
-        betaBanner.style.opacity = '0';
         betaBanner.classList.add('hidden');
         document.body.classList.remove('has-beta-banner');
         
-        // Track analytics
         if (typeof trackEvent === 'function') {
             trackEvent('Beta Banner', 'Close', 'User dismissed');
         }
@@ -215,7 +148,7 @@ function initBetaBanner() {
 }
 
 // ============================================
-// 4. PILIER ROMAIN NAVIGATION
+// PILIER ROMAIN NAVIGATION
 // ============================================
 function initRomanPillarNavigation() {
     const pillarNavItems = document.querySelectorAll('.pillar-nav-item');
@@ -263,7 +196,7 @@ function initRomanPillarNavigation() {
 }
 
 // ============================================
-// 5. HEADER SCROLL BEHAVIOR
+// HEADER + BARRE BETA SCROLL BEHAVIOR (SYNCHRONISÉ)
 // ============================================
 function initHeaderScrollBehavior() {
     let lastScroll = window.scrollY;
@@ -273,49 +206,47 @@ function initHeaderScrollBehavior() {
     
     if (!header) return;
     
-    // Hauteur du header (70px desktop, 60px mobile)
-    const getHeaderHeight = () => {
-        return window.innerWidth <= 850 ? 60 : 70;
-    };
-    
     let ticking = false;
     
     window.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 const currentScroll = window.scrollY;
-                const headerHeight = getHeaderHeight();
                 
-                // Hide/show header
+                // Scroll DOWN : cacher header + barre beta
                 if (currentScroll > lastScroll && currentScroll > 100) {
                     header.style.transform = 'translateY(-100%)';
-                    // Barre bêta monte en haut quand le header disparaît - FORCER avec !important via style inline
+                    
                     if (betaBanner && !betaBanner.classList.contains('hidden')) {
-                        betaBanner.style.setProperty('top', '0px', 'important');
-                        betaBanner.style.setProperty('transition', 'top 0.3s ease', 'important');
+                        betaBanner.style.transform = 'translateY(-100%)';
                     }
+                    
                     if (romanPillar) {
                         romanPillar.classList.remove('header-visible');
                         romanPillar.classList.add('header-hidden');
                     }
-                } else if (currentScroll < lastScroll) {
+                } 
+                // Scroll UP : montrer header + barre beta
+                else if (currentScroll < lastScroll) {
                     header.style.transform = 'translateY(0)';
-                    // Barre bêta redescend collée au header quand le header revient - FORCER avec !important
+                    
                     if (betaBanner && !betaBanner.classList.contains('hidden')) {
-                        betaBanner.style.setProperty('top', `${headerHeight}px`, 'important');
-                        betaBanner.style.setProperty('transition', 'top 0.3s ease', 'important');
+                        betaBanner.style.transform = 'translateY(0)';
                     }
+                    
                     if (romanPillar) {
                         romanPillar.classList.remove('header-hidden');
                         romanPillar.classList.add('header-visible');
                     }
                 }
                 
-                // Reset pillar et barre bêta au top
-                if (currentScroll <= 50 && romanPillar) {
-                    romanPillar.classList.remove('header-hidden', 'header-visible');
+                // Reset au top
+                if (currentScroll <= 50) {
+                    if (romanPillar) {
+                        romanPillar.classList.remove('header-hidden', 'header-visible');
+                    }
                     if (betaBanner && !betaBanner.classList.contains('hidden')) {
-                        betaBanner.style.setProperty('top', `${headerHeight}px`, 'important');
+                        betaBanner.style.transform = 'translateY(0)';
                     }
                 }
                 
@@ -326,11 +257,11 @@ function initHeaderScrollBehavior() {
         }
     });
     
-    console.log("✅ Header scroll activé");
+    console.log("✅ Header + barre beta scroll activés");
 }
 
 // ============================================
-// 6. MENU MOBILE
+// MENU MOBILE
 // ============================================
 function initMobileMenu() {
     const navMenu = document.getElementById('nav-menu');
@@ -338,7 +269,6 @@ function initMobileMenu() {
     const navClose = document.getElementById('nav-close');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    // Ouvrir menu
     if (navToggle) {
         navToggle.addEventListener('click', () => {
             navMenu?.classList.add('show-menu');
@@ -346,21 +276,18 @@ function initMobileMenu() {
         });
     }
     
-    // Fermer menu
     if (navClose) {
         navClose.addEventListener('click', () => {
             closeMenu();
         });
     }
     
-    // Fermer au clic sur un lien
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             closeMenu();
         });
     });
     
-    // Fermer au clic outside
     if (navMenu) {
         navMenu.addEventListener('click', (e) => {
             if (e.target === navMenu) {
@@ -378,16 +305,15 @@ function initMobileMenu() {
 }
 
 // ============================================
-// 7. SMOOTH SCROLL (OFFSETS CORRECTS)
+// SMOOTH SCROLL (OFFSETS CORRECTS)
 // ============================================
 function initSmoothScroll() {
-    const scrollButtons = document.querySelectorAll('.cta-scroll, .pillar-nav-item, .popup-cta-scroll');
+    const scrollButtons = document.querySelectorAll('.cta-scroll, .pillar-nav-item');
     
     scrollButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             const href = button.getAttribute('href');
             
-            // Ne pas traiter les liens externes ou vers des pages
             if (!href || !href.startsWith('#')) {
                 return;
             }
@@ -398,9 +324,9 @@ function initSmoothScroll() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                // Offsets personnalisés par section (header = 70px) ne jamais changer les lignes headeroffset
                 let headerOffset = -100;
                 
+                // Offsets personnalisés par section
                 if (targetId === '#pricing') {
                     headerOffset = 240;
                 } else if (targetId === '#product-demo') {
@@ -414,7 +340,7 @@ function initSmoothScroll() {
                 } else if (targetId === '#faq') {
                     headerOffset = 10;
                 } else if (targetId === '#hero') {
-                    headerOffset = -100; // Top de la page
+                    headerOffset = -100;
                 }
                 
                 const targetPosition = targetSection.offsetTop + headerOffset;
@@ -424,12 +350,17 @@ function initSmoothScroll() {
                     behavior: 'smooth' 
                 });
                 
-                // Cache le header pour certaines sections
-                if (targetId === '#product-demo' || targetId === '#features' || targetId === '#pricing' || targetId === '#why-different') {
+                // Cacher header après scroll vers certaines sections
+                if (targetId === '#product-demo' || targetId === '#features' || 
+                    targetId === '#pricing' || targetId === '#why-different') {
                     setTimeout(() => {
                         const header = document.querySelector('header');
                         if (header) {
                             header.style.transform = 'translateY(-100%)';
+                        }
+                        const betaBanner = document.getElementById('beta-banner');
+                        if (betaBanner && !betaBanner.classList.contains('hidden')) {
+                            betaBanner.style.transform = 'translateY(-100%)';
                         }
                         const romanPillar = document.querySelector('.roman-pillar');
                         if (romanPillar) {
@@ -439,7 +370,6 @@ function initSmoothScroll() {
                     }, 800);
                 }
                 
-                // Track analytics
                 trackEvent('Navigation', 'Smooth Scroll', targetId);
             }
         });
@@ -449,7 +379,7 @@ function initSmoothScroll() {
 }
 
 // ============================================
-// 8. FAQ ACCORDÉON
+// FAQ ACCORDÉON
 // ============================================
 function initFAQAccordion() {
     const faqQuestions = document.querySelectorAll('.faq-question');
@@ -459,7 +389,6 @@ function initFAQAccordion() {
             const faqItem = question.parentElement;
             const isActive = faqItem.classList.contains('active');
             
-            // Fermer toutes les autres FAQ
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
                 const btn = item.querySelector('.faq-question');
@@ -468,17 +397,14 @@ function initFAQAccordion() {
                 }
             });
             
-            // Toggle current FAQ
             if (!isActive) {
                 faqItem.classList.add('active');
                 question.setAttribute('aria-expanded', 'true');
                 
-                // Track analytics
                 const questionText = question.querySelector('span')?.textContent || 'Unknown';
                 trackEvent('FAQ', 'Question Opened', questionText);
             }
             
-            // Refresh Lucide icons
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
@@ -489,7 +415,7 @@ function initFAQAccordion() {
 }
 
 // ============================================
-// 9. CITATIONS ALÉATOIRES
+// CITATIONS ALÉATOIRES
 // ============================================
 function initRandomQuote() {
     const quoteElement = document.getElementById('citation-text');
@@ -499,14 +425,11 @@ function initRandomQuote() {
         return;
     }
     
-    // Sélection aléatoire
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     
-    // Affichage initial
     quoteElement.textContent = `"${randomQuote.text}"`;
     authorElement.textContent = `— ${randomQuote.author}`;
     
-    // Interaction : clic pour basculer EN/FR
     if (randomQuote.fr) {
         quoteElement.style.cursor = 'pointer';
         quoteElement.title = 'Cliquez pour voir la traduction française';
@@ -523,7 +446,6 @@ function initRandomQuote() {
             }
             isEnglish = !isEnglish;
             
-            // Track
             trackEvent('Footer', 'Quote Translate', randomQuote.author);
         });
     }
@@ -532,7 +454,7 @@ function initRandomQuote() {
 }
 
 // ============================================
-// 10. ANALYTICS TRACKING
+// ANALYTICS TRACKING
 // ============================================
 function initAnalyticsTracking() {
     // Track CTA clicks
@@ -560,7 +482,6 @@ function initAnalyticsTracking() {
         });
     });
     
-    // Track scroll depth
     trackScrollDepth();
     
     console.log("✅ Analytics configuré");
@@ -586,7 +507,6 @@ function trackEvent(category, action, label) {
         });
     }
     
-    // Console log
     console.log(`📊 Event: ${category} | ${action} | ${label}`);
 }
 
@@ -619,8 +539,6 @@ function trackScrollDepth() {
         }
     });
 }
-
-
 
 // ============================================
 // LAZY LOADING IMAGES
@@ -665,7 +583,7 @@ window.addEventListener('error', (e) => {
 });
 
 // ============================================
-// EXPORTS
+// EXPORTS (si module)
 // ============================================
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
